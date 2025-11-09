@@ -17,6 +17,13 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem 'faraday'       # HTTP client
+gem 'kaminari'      # pagination (3.5)
+gem 'ransack'       # search (4.1/4.2)
+gem 'bootstrap', '~> 5.3'
+gem 'sassc-rails'
+gem 'faker'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -60,4 +67,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+end
+
+group :development do
+  gem 'dotenv-rails' # to store API keys in .env
 end
