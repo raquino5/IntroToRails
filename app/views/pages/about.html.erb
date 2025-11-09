@@ -1,13 +1,13 @@
 <div class="p-4 bg-white rounded-3 shadow-sm">
   <h1>About</h1>
   <p><strong>Data Sources:</strong> RAWG Video Games Database API, Steam Store APIs, Faker.</p>
-  <p>We import core metadata from RAWG (games, genres, platforms, developers) and pull review
-     summaries/snippets from Steam. Faker fills gaps (e.g., placeholder descriptions).</p>
-  <h3 class="mt-4">ERD (simplified)</h3>
+  <p>The website imports core metadata from RAWG (games, genres, platforms, developers) and pull review
+     summaries/snippets from Steampowered games. Additionally it includes Faker which fills missing gaps like a placeholder for descriptions.</p>
+  <h3 class="mt-4">The Database ERD</h3>
   <pre>
-Game ⟷ GameGenre ⟷ Genre
-Game ⟷ GamePlatform ⟷ Platform
-Game ⟷ GameDeveloper ⟷ Developer
-Game 1—* Review
+    Game ⟷ GameGenre ⟷ Genre
+    Game ⟷ GamePlatform ⟷ Platform
+    Game ⟷ GameDeveloper ⟷ Developer
+    Game 1—* Review
   </pre>
 </div>

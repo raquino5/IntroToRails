@@ -37,11 +37,12 @@
       <% end %>
     </div>
 
-    <div class="mt-3">
-      <%= paginate @games %>
+    <div class="my-4">
+      <nav>
+        <%= paginate @games, theme: 'bootstrap-5', window: 2 %>
+      </nav>
     </div>
   <% else %>
-    <!-- 5.2: ERB conditional example -->
     <div class="alert alert-warning">No games matched your filters.</div>
   <% end %>
 </div>
