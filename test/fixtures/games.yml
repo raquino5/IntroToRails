@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rawg_id: 1
+  name: MyString
+  released: 2025-11-08
+  rating: 9.99
+  slug: MyString
+  steam_appid: 1
+  description: MyText
+
+two:
+  rawg_id: 1
+  name: MyString
+  released: 2025-11-08
+  rating: 9.99
+  slug: MyString
+  steam_appid: 1
+  description: MyText
