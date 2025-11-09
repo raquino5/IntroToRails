@@ -1,2 +1,44 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<div class="bg-white p-4 rounded-3 shadow-sm">
+  <h1 class="mb-3"><%= @game.name %></h1>
+  <p><strong>Released:</strong> <%= @game.released || "TBD" %></p>
+  <p><strong>Rating:</strong> <%= @game.rating || "N/A" %></p>
+
+  <p><strong>Genres:</strong>
+    <% @game.genres.each do |gen| %>
+      <%= link_to gen.name, genre_path(gen), class: "badge text-bg-secondary me-1" %>
+    <% end %>
+  </p>
+
+  <p><strong>Platforms:</strong>
+    <% @game.platforms.each do |pl| %>
+      <%= link_to pl.name, platform_path(pl), class: "badge text-bg-info me-1" %>
+    <% end %>
+  </p>
+
+  <p><strong>Developers:</strong>
+    <% @game.developers.each do |dev| %>
+      <%= link_to dev.name, developer_path(dev), class: "badge text-bg-dark me-1" %>
+    <% end %>
+  </p>
+
+  <hr>
+  <h4>Description</h4>
+  <p><%= @game.description.presence || "No description available." %></p>
+
+  <hr>
+  <h4>Recent Steam Reviews</h4>
+  <% if @game.reviews.any? %>
+    <ul class="list-group">
+      <% @game.reviews.limit(10).each do |r| %>
+        <li class="list-group-item">
+          <strong><%= r.author || "Anonymous" %></strong>
+          <% if r.rating %> — <%= r.rating %>/100 <% end %>
+          <div><%= r.content %></div>
+          <small class="text-muted">Source: <%= r.source %></small>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">No Steam review snippets ingested for this title.</p>
+  <% end %>
+</div>
