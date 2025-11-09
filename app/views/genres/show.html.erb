@@ -1,2 +1,15 @@
-<h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+<h1><%= @genre.name %></h1>
+<p><%= link_to "Back to Games", games_path %></p>
+<div class="row">
+  <% @games.each do |g| %>
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5><%= link_to g.name, g %></h5>
+          <p class="small mb-0"><strong>Rating:</strong> <%= g.rating || "N/A" %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= paginate @games %>
