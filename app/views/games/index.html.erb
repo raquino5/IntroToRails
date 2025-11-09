@@ -1,2 +1,47 @@
-<h1>Games#index</h1>
-<p>Find me in app/views/games/index.html.erb</p>
+<div class="bg-white p-3 rounded-3 shadow-sm">
+  <h1 class="mb-3">Games</h1>
+
+  <%= search_form_for @q, url: games_path, method: :get, class: "row g-2 mb-3" do |f| %>
+    <div class="col-md-4">
+      <%= f.search_field :name_or_description_cont, class: "form-control", placeholder: "Search name or description..." %>
+    </div>
+    <div class="col-md-2">
+      <%= select_tag :genre_id, options_from_collection_for_select(@genres, :id, :name, params[:genre_id]), include_blank: "All Genres", class: "form-select" %>
+    </div>
+    <div class="col-md-2">
+      <%= select_tag :platform_id, options_from_collection_for_select(@platforms, :id, :name, params[:platform_id]), include_blank: "All Platforms", class: "form-select" %>
+    </div>
+    <div class="col-md-2">
+      <%= select_tag :developer_id, options_from_collection_for_select(@developers, :id, :name, params[:developer_id]), include_blank: "All Developers", class: "form-select" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Search", class: "btn btn-primary w-100" %>
+    </div>
+  <% end %>
+
+  <% if @games.any? %>
+    <div class="row">
+      <% @games.each do |g| %>
+        <div class="col-md-6 col-lg-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to g.name, g %></h5>
+              <p class="card-text small mb-1"><strong>Released:</strong> <%= g.released || "TBD" %></p>
+              <p class="card-text small mb-1"><strong>Rating:</strong> <%= g.rating || "N/A" %></p>
+              <p class="card-text small">
+                <strong>Genres:</strong> <%= g.genres.map(&:name).join(", ").presence || "—" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-3">
+      <%= paginate @games %>
+    </div>
+  <% else %>
+    <!-- 5.2: ERB conditional example -->
+    <div class="alert alert-warning">No games matched your filters.</div>
+  <% end %>
+</div>
