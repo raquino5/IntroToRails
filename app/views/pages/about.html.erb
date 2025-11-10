@@ -2,7 +2,8 @@
   <h1>About</h1>
   <p><strong>Data Sources:</strong> RAWG Video Games Database API, Steam Store APIs, Faker.</p>
   <p>
-    The RAWG API is a canonical game metadata (name, release date, rating) plus relationships to genres, platforms, and developers. JSON responses with pagination.
+    The RAWG API is a canonical game metadata (name, release date, rating) plus relationships to genres,
+    platforms, and developers. JSON responses with pagination.
   </p>
   <p>
     Steam Store API used for recent user review snippets and helpfulness. JSON payload under reviews.
@@ -10,22 +11,11 @@
   <p>
     Faker used for fallback descriptions and extra titles to exceed the 200-row minimum and for development.
   </p>
+
   <h3 class="mt-4">The Database ERD</h3>
-  <pre>
-    Game (id, rawg_id, steam_appid, name, slug, released, rating, description, created_at, updated_at)
-    Genre (id, name, slug, created_at, updated_at)
-    Platform (id, name, slug, created_at, updated_at)
-    Developer (id, name, slug, created_at, updated_at)
-    Review (id, game_id, author, content, source, rating, created_at, updated_at)
 
-    GameGenre (game_id, genre_id)           -- PK: (game_id, genre_id)
-    GamePlatform (game_id, platform_id)     -- PK: (game_id, platform_id)
-    GameDeveloper (game_id, developer_id)   -- PK: (game_id, developer_id)
-
-    Associations:
-    Game 1—* Review
-    Game *—* Genre      (via GameGenre)
-    Game *—* Platform   (via GamePlatform)
-    Game *—* Developer  (via GameDeveloper)
-  </pre>
+<%= image_tag "erd_diagram.png",
+    class: "img-fluid rounded-3 shadow-sm mb-3",
+    alt: "ERD Diagram",
+    width: "600" %>
 </div>
